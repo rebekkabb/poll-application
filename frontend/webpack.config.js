@@ -1,9 +1,8 @@
-var path = require('path')
+var path = require('path');
 var webpack = require('webpack');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-    mode: 'development',
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -31,7 +30,7 @@ module.exports = {
                 loader: 'ts-loader',
                 exclude: /node_modules/,
                 options: {
-                    appendTsSuffixTo: [/\.vue$/],
+                    appendTsSuffixTo: [/\.vue$/]
                 }
             },
             {
@@ -50,8 +49,13 @@ module.exports = {
         }
     },
     devServer: {
+        stats: "errors-only",
         historyApiFallback: true,
-        noInfo: true
+        noInfo: true,
+        port: 8090,
+        proxy: {
+            '/': 'http://localhost:8080/'
+        }
     },
     performance: {
         hints: false
@@ -60,7 +64,7 @@ module.exports = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map'
+    module.exports.devtool = '#source-map';
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({

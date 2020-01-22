@@ -1,27 +1,30 @@
 package as.ter.rebekka.poll.controller;
 
+import as.ter.rebekka.poll.dto.PollDto;
 import as.ter.rebekka.poll.route.PollRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/as/ter/rebekka/poll")
+@RequestMapping("/poll")
 public class PollController {
     @Autowired
     private PollRoute pollRoute;
 
     @GetMapping("/") //GET requests to "/" mapped to this method
-    public ModelAndView viewAllPolls() {
-        return new ModelAndView("polls", pollRoute.viewAllPolls());
+    public List<PollDto> viewAllPolls() {
+        return pollRoute.viewAllPolls();
     }
 
-    @PutMapping("/as/ter/rebekka/poll")
+    @PutMapping("/")
     public ModelAndView createPoll() {
         return new ModelAndView("poll_create", pollRoute.createPoll());
     }
 
-    @PostMapping("/as/ter/rebekka/poll")
+    @PostMapping("/")
     public ModelAndView editPoll() {
         return new ModelAndView("poll_edit", pollRoute.editPoll());
     }

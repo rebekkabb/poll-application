@@ -21,13 +21,19 @@ configurations {
 
 configurations.default.extendsFrom(configurations.npmResources)
 
-task npm_run_build(dependsOn: 'npmInstall') {
-    inputs.files fileTree("src")
-    outputs.dir 'dist'
+task buildWebpack(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'build']
+    inputs.files project.fileTree(dir: 'src', include: "**/*")
+    outputs.file 'dist/build.js'
+}
+
+task start(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'start']
+    outputs.upToDateWhen { false }
 }
 
 task packageNpmApp(type: Zip) {
-    dependsOn npm_run_build
+    dependsOn buildWebpack
     group "build"
     baseName 'poll-frontend'
     extension 'jar'
@@ -49,5 +55,5 @@ clean {
     delete packageNpmApp.archiveFile
 }
 
-assemble.dependsOn npm_run_build
+assemble.dependsOn buildWebpack
 assemble.dependsOn packageNpmApp

@@ -1,7 +1,9 @@
 package as.ter.rebekka.poll.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
 }

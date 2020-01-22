@@ -1,0 +1,20 @@
+plugins {
+    id "com.github.node-gradle.node" version "2.2.0"
+}
+
+group 'as.ter.rebekka'
+version '0.0.1-SNAPSHOT'
+
+node {
+    version = '12.13.1'
+    download = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+task build(type: NpmTask, dependsOn: 'npmInstall') {
+    group = 'build'
+    args = ['run', 'build']
+}

@@ -1,18 +1,10 @@
-plugins {
-	id 'java'
-}
-
 group = 'as.ter.rebekka'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 configurations {
 	developmentOnly
 	runtimeClasspath {
 		extendsFrom developmentOnly
-	}
-	compileOnly {
-		extendsFrom annotationProcessor
 	}
 }
 

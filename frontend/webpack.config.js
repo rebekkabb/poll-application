@@ -54,7 +54,7 @@ module.exports = {
         noInfo: true,
         port: 8090,
         proxy: {
-            '/': 'http://localhost:8080/'
+            '/poll': 'http://localhost:8080/'
         }
     },
     performance: {

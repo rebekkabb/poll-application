@@ -1,7 +1,7 @@
 <template>
     <div>
         Name: <input v-model="name" type="text">
-        <h1>Hello Component</h1>
+        <h1>Poll</h1>
         <hello :name="name" :initialEnthusiasm="initialEnthusiasm"/>
         <h1>Hello Decorator Component</h1>
         <div v-for="poll in polls">
@@ -9,6 +9,8 @@
         </div>
 
         <button @click="this.getPolls">GetData</button>
+
+        <create-poll></create-poll>
     </div>
 </template>
 
@@ -17,12 +19,14 @@
     import axios from "axios";
     import Hello from "./Hello.vue"
     import Poll from "./Poll.vue"
-    import PollDto from "../dto/Poll";
+    import CreatePoll from "./CreatePoll.vue"
+    import PollDto from "../dto/PollDto";
 
     @Component({
         components: {
             Hello,
-            Poll
+            Poll,
+            CreatePoll
         }
     })
     export default class Main extends Vue {

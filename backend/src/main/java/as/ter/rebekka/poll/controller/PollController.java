@@ -1,5 +1,6 @@
 package as.ter.rebekka.poll.controller;
 
+import as.ter.rebekka.poll.dto.CreatePollDto;
 import as.ter.rebekka.poll.dto.PollDto;
 import as.ter.rebekka.poll.route.PollRoute;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class PollController {
     }
 
     @PutMapping("/")
-    public ModelAndView createPoll() {
-        return new ModelAndView("poll_create", pollRoute.createPoll());
+    public void createPoll(@RequestBody CreatePollDto createPollDto) {
+        pollRoute.createPoll(createPollDto);
     }
 
     @PostMapping("/")

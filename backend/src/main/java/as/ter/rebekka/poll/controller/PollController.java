@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/poll")
+@RequestMapping("/as/ter/rebekka/poll")
 public class PollController {
     @Autowired
     private PollRoute pollRoute;
@@ -16,12 +16,12 @@ public class PollController {
         return new ModelAndView("polls", pollRoute.viewAllPolls());
     }
 
-    @PutMapping("/poll")
+    @PutMapping("/as/ter/rebekka/poll")
     public ModelAndView createPoll() {
         return new ModelAndView("poll_create", pollRoute.createPoll());
     }
 
-    @PostMapping("/poll")
+    @PostMapping("/as/ter/rebekka/poll")
     public ModelAndView editPoll() {
         return new ModelAndView("poll_edit", pollRoute.editPoll());
     }

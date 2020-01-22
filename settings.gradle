@@ -1,1 +1,5 @@
 rootProject.name = 'poll'
+
+include 'backend'
+include 'frontend'
+

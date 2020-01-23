@@ -35,7 +35,7 @@
         polls: PollDto[] = [];
 
         private getPolls(): void {
-            axios.get("/poll/").then((res) => {
+            axios.get("/api/poll").then((res) => {
                 this.polls = res.data;
                 console.log(res);
             })

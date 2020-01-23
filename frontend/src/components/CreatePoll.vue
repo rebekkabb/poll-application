@@ -39,7 +39,7 @@
         }
 
         private sendPoll(): void {
-            axios.put("/poll/", this.poll).then((res) => {
+            axios.put("/api/poll", this.poll).then((res) => {
                 console.log(res);
             })
         }

@@ -10,22 +10,22 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-@RequestMapping("/poll")
+@RequestMapping("/api/poll")
 public class PollController {
     @Autowired
     private PollRoute pollRoute;
 
-    @GetMapping("/") //GET requests to "/" mapped to this method
+    @GetMapping //GET requests to "/" mapped to this method
     public List<PollDto> viewAllPolls() {
         return pollRoute.viewAllPolls();
     }
 
-    @PutMapping("/")
+    @PutMapping
     public void createPoll(@RequestBody CreatePollDto createPollDto) {
         pollRoute.createPoll(createPollDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ModelAndView editPoll() {
         return new ModelAndView("poll_edit", pollRoute.editPoll());
     }

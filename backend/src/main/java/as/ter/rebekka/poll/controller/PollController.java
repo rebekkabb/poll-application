@@ -26,13 +26,13 @@ public class PollController {
     }
 
     @PostMapping
-    public ModelAndView editPoll() {
-        return new ModelAndView("poll_edit", pollRoute.editPoll());
+    public void editPoll() {
+        throw new RuntimeException("Not implemented");
     }
 
     //@RequestParam makes the query string param "pollName" into param pollName for editPoll method
     @GetMapping("/:pollName")
-    public ModelAndView editPoll(@RequestParam("pollName") String pollName) {
-        return new ModelAndView("poll_view", pollRoute.viewPoll(pollName));
+    public PollDto editPoll(@RequestParam("pollName") String pollName) {
+        throw new RuntimeException("Not implemented");
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="everything">
         Name: <input v-model="name" type="text">
         <h1>Poll</h1>
         <hello :name="name" :initialEnthusiasm="initialEnthusiasm"/>
@@ -45,5 +45,8 @@
 <style>
     .greeting {
         font-size: 20px;
+    }
+    .everything {
+       align-content: center;
     }
 </style>

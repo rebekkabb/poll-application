@@ -38,6 +38,7 @@
             this.poll.options.push("")
         }
 
+
         private sendPoll(): void {
             axios.put("/api/poll", this.poll).then((res) => {
                 console.log(res);

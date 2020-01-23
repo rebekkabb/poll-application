@@ -39,11 +39,15 @@ public class PollRoute {
         pollRepository.save(poll);
     }
 
-    public Map<String, Object> viewPoll(String pollName) {
+    public Map<String, Object> editPoll() {
         throw new RuntimeException("Not implemented");
     }
 
-    public Map<String, Object> editPoll() {
+    public Map<String, Object> viewPoll(long pollId) {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public Map<String, Object> deletePoll(long pollId) {
         throw new RuntimeException("Not implemented");
     }
 }

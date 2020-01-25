@@ -2,6 +2,7 @@
     <div>
         <span>{{poll.title}}</span>
         <span>{{poll.url}}</span>
+        <span>{{poll.options}}</span>
     </div>
 </template>
 

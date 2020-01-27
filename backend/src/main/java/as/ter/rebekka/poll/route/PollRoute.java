@@ -22,6 +22,7 @@ public class PollRoute {
 
         polls.forEach(pollModel -> {
             final var pollDto = new PollDto();
+            pollDto.id = pollModel.id;
             pollDto.title = pollModel.title;
             pollDto.duplicationCheck = pollModel.duplicationCheck;
             pollDto.multipleAnswers = pollModel.multipleAnswers;
@@ -48,7 +49,7 @@ public class PollRoute {
         throw new RuntimeException("Not implemented");
     }
 
-    public Map<String, Object> deletePoll(long pollId) {
-        throw new RuntimeException("Not implemented");
+    public void deletePoll(long pollId) {
+        pollRepository.deleteById(pollId);
     }
 }

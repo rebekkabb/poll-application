@@ -11,10 +11,12 @@
                         Multiple answers allowed: {{poll.multipleAnswers}}
                         <br>
                         Duplication check: {{poll.duplicationCheck}}
+                    <br><br>
+                    <b-button @click="deletePoll(poll.id)" variant="outline-danger" size="sm">Delete poll</b-button>
                     </b-list-group-item>
                 </div>
                 <br>
-                <b-button @click="this.getPolls" variant="outline-dark">GetData</b-button>
+                <b-button @click="this.getPolls" variant="outline-dark">Get data</b-button>
             </b-list-group>
 
         </b-card>
@@ -37,6 +39,12 @@
             private getPolls(): void {
                 axios.get("/api/poll").then((res) => {
                     this.polls = res.data;
+                    console.log(res);
+                })
+            }
+
+            private deletePoll(id: number): void {
+                axios.delete("/api/poll/" + id).then((res) => {
                     console.log(res);
                 })
             }

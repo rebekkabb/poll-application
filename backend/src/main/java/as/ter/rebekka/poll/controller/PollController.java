@@ -35,8 +35,8 @@ public class PollController {
         throw new RuntimeException("Not implemented");
     }
 
-    @DeleteMapping("/:pollId")
-    public void deletePoll(@RequestParam("pollId") long pollId) {
-        throw new RuntimeException("Not implemented");
+    @DeleteMapping("/{pollId}")
+    public void deletePoll(@PathVariable long pollId) {
+        pollRoute.deletePoll(pollId);
     }
 }

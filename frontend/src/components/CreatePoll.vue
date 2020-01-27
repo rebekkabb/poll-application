@@ -62,7 +62,7 @@
         private sendPoll(): void {
             axios.put("/api/poll", this.poll).then((res) => {
                 console.log(res);
-                
+                this.$root.$emit('refreshPollList')
             })
         }
     };

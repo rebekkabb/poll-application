@@ -36,15 +36,19 @@
         export default class PollList extends Vue {
             polls: PollDto[] = [];
 
+            constructor() {
+                super();
+                this.$root.$on('refreshPollList', this.getPolls)
+            }
+
             private getPolls(): void {
                 axios.get("/api/poll").then((res) => {
                     this.polls = res.data;
-                    console.log(res);
                 })
             }
 
             private deletePoll(id: number): void {
-                axios.delete("/api/poll/" + id).then((res) => {
+                axios.delete("/api/poll/" + id).then(() => {
                     this.getPolls()
                 })
             }

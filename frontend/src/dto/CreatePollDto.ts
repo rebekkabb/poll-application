@@ -1,7 +1,6 @@
 export default class CreatePollDto {
-    id?: number;
-    title?: String;
-    multipleAnswers?: boolean;
-    duplicationCheck?: boolean;
+    title: String = "";
+    multipleAnswers: boolean = false;
+    duplicationCheck: boolean = false;
     options: String[] = [];
 }

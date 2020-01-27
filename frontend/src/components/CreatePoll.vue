@@ -2,7 +2,7 @@
     <div>
         <b-card header="Create Poll" class="text-center" border-variant="dark" style="max-width: 65%;">
             <label>
-                Title:<b-input type="text" v-model="poll.title"/>
+                Title:<b-input id="tekst" type="text" v-model="poll.title"/>
             </label>
             <br>
             <b-button @click="addOption" size="sm" variant="outline-success">Add option</b-button>
@@ -44,6 +44,7 @@
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
     import CreatePollDto from "../dto/CreatePollDto";
+    import PollList from "./PollList.vue";
     import axios from "axios";
 
     @Component
@@ -61,6 +62,7 @@
         private sendPoll(): void {
             axios.put("/api/poll", this.poll).then((res) => {
                 console.log(res);
+                
             })
         }
     };

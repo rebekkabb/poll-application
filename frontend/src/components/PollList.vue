@@ -45,7 +45,7 @@
 
             private deletePoll(id: number): void {
                 axios.delete("/api/poll/" + id).then((res) => {
-                    console.log(res);
+                    this.getPolls()
                 })
             }
         };

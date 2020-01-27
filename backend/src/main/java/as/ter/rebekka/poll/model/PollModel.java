@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Table("polls")
@@ -16,8 +17,7 @@ public class PollModel {
     public long id;
 
     public String title;
-    public LocalTime timeCreated;
-    public String duplicationCheck;
+    public boolean duplicationCheck;
     public boolean multipleAnswers;
-    public String url;
+    public List<String> options;
 }

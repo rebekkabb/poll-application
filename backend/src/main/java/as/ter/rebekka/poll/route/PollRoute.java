@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -26,6 +23,9 @@ public class PollRoute {
         polls.forEach(pollModel -> {
             final var pollDto = new PollDto();
             pollDto.title = pollModel.title;
+            pollDto.duplicationCheck = pollModel.duplicationCheck;
+            pollDto.multipleAnswers = pollModel.multipleAnswers;
+            pollDto.options = pollModel.options;
             pollDtos.add(pollDto);
         });
         return pollDtos;
@@ -34,8 +34,9 @@ public class PollRoute {
     public void createPoll(CreatePollDto createPollDto) {
         final var poll = new PollModel();
         poll.title = createPollDto.title;
-        poll.duplicationCheck = createPollDto.duplicationCheck.toString();
+        poll.duplicationCheck = createPollDto.duplicationCheck;
         poll.multipleAnswers = createPollDto.multipleAnswers;
+        poll.options = createPollDto.options;
         pollRepository.save(poll);
     }
 

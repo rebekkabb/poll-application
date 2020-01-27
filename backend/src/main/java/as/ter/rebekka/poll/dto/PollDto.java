@@ -4,6 +4,7 @@ import java.util.List;
 
 public class PollDto {
     public String title;
-    public String url;
+    public Boolean multipleAnswers;
+    public Boolean duplicationCheck;
     public List<String> options;
 }

@@ -1,5 +1,6 @@
 export default interface PollDto {
     title: String;
-    url: String;
+    multipleAnswers: boolean;
+    duplicationCheck: boolean;
     options: String[];
 }

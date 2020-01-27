@@ -1,10 +1,10 @@
 <template>
-    <b-card header="Polls created" class="text-center" border-variant="dark" style="max-width: 50%;">
+    <b-card header="Polls created" class="text-center" border-variant="dark" style="max-width: 65%;">
         <b-list-group>
             <div v-for="poll in polls">
                 <b-list-group-item>
                     <!-- <poll :poll="poll"></poll> --->
-                        Title: {{poll.title}}
+                    <h5>Title: {{poll.title}}</h5>
                         <br>
                         Options: {{poll.options}}
                         <br>

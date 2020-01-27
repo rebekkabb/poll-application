@@ -1,18 +1,23 @@
 <template>
     <div>
-        <b-card header="Create Poll" class="text-center" border-variant="dark" style="max-width: 50%;">
+        <b-card header="Create Poll" class="text-center" border-variant="dark" style="max-width: 65%;">
             <label>
                 Title:<b-input type="text" v-model="poll.title"/>
             </label>
             <br>
-            <b-button @click="addOption" size="sm" variant="outline-dark">Add option</b-button>
+            <b-button @click="addOption" size="sm" variant="outline-success">Add option</b-button>
             <br><br>
             <div v-for="(option, index) in poll.options">
-                <label>
-                    Option {{index + 1}}
+                <b-input-group>
+                    <template v-slot:prepend>
+                        <b-input-group-text >Option {{index + 1}}</b-input-group-text>
+                    </template>
                     <b-input type="text" v-model="poll.options[index]"/>
-                    <b-button @click="deleteOption(index)" size="sm" variant="outline-danger">Delete option</b-button>
-                </label>
+                    <b-input-group-append>
+                        <b-button @click="deleteOption(index)" size="sm" variant="outline-danger">Delete option</b-button>
+                    </b-input-group-append>
+                </b-input-group>
+                <br>
             </div>
 
             <br><br>

@@ -33,7 +33,7 @@
 
 <style>
     .everything {
-        margin-left: 25%;
+        margin-left: 22%;
         margin-right: 10%;
         margin-top: 5%;
     }

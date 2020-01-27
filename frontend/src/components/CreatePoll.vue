@@ -1,31 +1,38 @@
 <template>
     <div>
-        <h1>Create Poll</h1>
-        <label>
-            Title
-            <input type="text" v-model="poll.title"/>
-        </label>
-        <br>
-        <div v-for="(option, index) in poll.options">
+        <b-card header="Create Poll" class="text-center" border-variant="dark" style="max-width: 50%;">
             <label>
-                Option {{index + 1}}
-                <input type="text" v-model="poll.options[index]">
-                <button @click="deleteOption(index)">Delete option</button>
+                Title:<b-input type="text" v-model="poll.title"/>
             </label>
+            <br>
+            <b-button @click="addOption" size="sm" variant="outline-dark">Add option</b-button>
+            <br><br>
+            <div v-for="(option, index) in poll.options">
+                <label>
+                    Option {{index + 1}}
+                    <b-input type="text" v-model="poll.options[index]"/>
+                    <b-button @click="deleteOption(index)" size="sm" variant="outline-danger">Delete option</b-button>
+                </label>
+            </div>
+
+            <br><br>
+            <label>
+                Multiple answers
+                <input type="checkbox" v-model="poll.multipleAnswers"/>
+            </label>
+            <br>
+            <label>
+                Duplication check
+                <input type="checkbox" v-model="poll.duplicationCheck">
+            </label>
+            <br><br>
+            <b-button @click="sendPoll" size="sm" variant="outline-dark">Send poll</b-button>
+        </b-card>
+        <div class="check">
+            Check if the fields are workin:
+            <br>
+            {{this.poll}}
         </div>
-        <button @click="addOption">Add option</button>
-        <button @click="sendPoll">Send poll</button>
-        {{this.poll}}
-        <br>
-        <label>
-            Multiple answers
-            <input type="checkbox" v-model="poll.multipleAnswers"/>
-        </label>
-        <br>
-        <label>
-            Duplication check
-            <input type="checkbox" v-model="poll.duplicationCheck">
-        </label>
     </div>
 </template>
 
@@ -53,3 +60,9 @@
         }
     };
 </script>
+
+<style>
+    .check {
+        margin-top: 30%;
+    }
+</style>

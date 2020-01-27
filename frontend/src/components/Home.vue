@@ -1,10 +1,8 @@
 <template>
     <div class="jumboboy">
         <div class="bootstrap">
-            <b-jumbotron header="Poll application" lead="Make ur own polls!">
-                <b-button variant="primary" href="#">
-                    <router-link to="/polls">Go to Polls</router-link>
-                </b-button>
+            <b-jumbotron header="Poll application" lead="Make ur own polls!" border-variant="dark">
+                <b-button variant="outline-primary" to="/polls">Go to Polls</b-button>
             </b-jumbotron>
         </div>
     </div>
@@ -24,5 +22,6 @@
         width: 50%;
         margin-top: 15%;
         margin-left: 25%;
+        text-align: center;
     }
 </style>

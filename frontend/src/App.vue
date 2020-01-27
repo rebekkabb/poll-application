@@ -1,9 +1,9 @@
 <template>
     <div>
-        <p>
-            <router-link to="/">Home</router-link>
-            <router-link to="/polls">Polls</router-link>
-        </p>
+        <b-nav tabs align="center">
+            <b-nav-item to="/">Home</b-nav-item>
+            <b-nav-item to="/polls">Polls</b-nav-item>
+        </b-nav>
         <router-view></router-view>
     </div>
 </template>
@@ -23,5 +23,6 @@
 </script>
 
 <style>
+
 
 </style>

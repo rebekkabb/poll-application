@@ -1,14 +1,15 @@
 <template>
-    <div>
-        <h2>Poll list</h2>
-        <div v-for="poll in polls">
-            <p>Title</p>
-            <poll :poll="poll"></poll>
-        </div>
+    <b-card header="Polls created" class="text-center" border-variant="dark" style="max-width: 50%;">
+        <b-list-group>
+            <div v-for="poll in polls">
+                <b-list-group-item style="height: 3em;">
+                <poll :poll="poll"></poll>
+                </b-list-group-item>
+            </div>
+            <button @click="this.getPolls">GetData</button>
+        </b-list-group>
 
-        <button @click="this.getPolls">GetData</button>
-
-    </div>
+    </b-card>
 </template>
 
 <script lang="ts">

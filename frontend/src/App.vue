@@ -3,6 +3,7 @@
         <b-nav tabs align="center">
             <b-nav-item to="/">Home</b-nav-item>
             <b-nav-item to="/polls">Polls</b-nav-item>
+            <b-nav-item to="/stats">Statistics</b-nav-item>
             <b-nav-item v-b-modal.modal-center>Log in</b-nav-item>
         </b-nav>
         <SignIn></SignIn>
@@ -22,7 +23,6 @@
         }
     })
     export default class App extends Vue {
-
     }
 </script>
 

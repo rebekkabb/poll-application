@@ -40,9 +40,14 @@
         export default class PollList extends Vue {
             polls: PollDto[] = [];
             polly: PollDto[] = [];
+
             constructor() {
                 super();
                 this.$root.$on('refreshPollList', this.getPolls)
+            }
+
+            created(){
+                this.getPolls();
             }
 
             private getPolls(): void {

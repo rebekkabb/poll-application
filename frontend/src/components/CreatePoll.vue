@@ -44,7 +44,6 @@
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
     import CreatePollDto from "../dto/CreatePollDto";
-    import PollList from "./PollList.vue";
     import axios from "axios";
 
     @Component

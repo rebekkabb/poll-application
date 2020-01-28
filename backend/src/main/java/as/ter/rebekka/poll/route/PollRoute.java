@@ -45,8 +45,20 @@ public class PollRoute {
         throw new RuntimeException("Not implemented");
     }
 
-    public Map<String, Object> viewPoll(long pollId) {
-        throw new RuntimeException("Not implemented");
+    public PollDto viewPoll(long pollId) {
+        var poll = pollRepository.findById(pollId);
+        final var pollDto = new PollDto();
+        if(poll.isPresent()){
+            PollModel pollModel = poll.get();
+            pollDto.id = pollModel.id;
+            pollDto.title = pollModel.title;
+            pollDto.duplicationCheck = pollModel.duplicationCheck;
+            pollDto.multipleAnswers = pollModel.multipleAnswers;
+            pollDto.options = pollModel.options;
+        }else {
+            System.out.println("Poll not found!");
+        }
+        return pollDto;
     }
 
     public void deletePoll(long pollId) {

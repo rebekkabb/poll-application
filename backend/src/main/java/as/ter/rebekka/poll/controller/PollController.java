@@ -25,14 +25,14 @@ public class PollController {
         pollRoute.createPoll(createPollDto);
     }
 
-    @PostMapping("/:pollId")
-    public void editPoll(@RequestParam("pollId") long pollId, @RequestBody CreatePollDto createPollDto) {
+    @PostMapping("/{pollId}")
+    public void editPoll(@PathVariable long pollId, @RequestBody CreatePollDto createPollDto) {
         throw new RuntimeException("Not implemented");
     }
 
-    @GetMapping("/:pollId")
-    public PollDto viewPoll(@RequestParam("pollId") long pollId) {
-        throw new RuntimeException("Not implemented");
+    @GetMapping("/{pollId}")
+    public PollDto viewPoll(@PathVariable long pollId) {
+        return pollRoute.viewPoll(pollId);
     }
 
     @DeleteMapping("/{pollId}")

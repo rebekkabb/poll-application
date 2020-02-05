@@ -29,8 +29,8 @@ public class PollController {
 
     @Transactional
     @PostMapping("/{pollId}")
-    public void editPoll(@PathVariable long pollId, @RequestBody CreatePollDto createPollDto) {
-        pollRoute.editPoll(pollId, createPollDto);
+    public void editPoll(@PathVariable long pollId, @RequestBody PollDto pollDto) {
+        pollRoute.editPoll(pollId, pollDto);
     }
 
     @Transactional

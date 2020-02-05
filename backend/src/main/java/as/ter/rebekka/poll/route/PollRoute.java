@@ -2,6 +2,7 @@ package as.ter.rebekka.poll.route;
 
 import as.ter.rebekka.poll.dto.CreatePollDto;
 import as.ter.rebekka.poll.dto.PollDto;
+import as.ter.rebekka.poll.dto.PollOptionDto;
 import as.ter.rebekka.poll.model.PollModel;
 import as.ter.rebekka.poll.model.PollOptionsModel;
 import as.ter.rebekka.poll.repository.PollOptionsRepository;
@@ -10,7 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +35,9 @@ public class PollRoute {
             pollDto.title = pollModel.title;
             pollDto.duplicationCheck = pollModel.duplicationCheck;
             pollDto.multipleAnswers = pollModel.multipleAnswers;
-            pollDto.options = pollOptionsRepository.findAllOptionValuesWithPollId(pollModel.id);
+            pollDto.options = pollOptionsRepository.findAllByPollId(pollModel.id)
+                    .stream().map(PollOptionDto::new)
+                    .collect(Collectors.toList());
             pollDtos.add(pollDto);
         });
         return pollDtos;
@@ -52,29 +56,36 @@ public class PollRoute {
 
         System.out.println(poll.id);
 
-        if (createPollDto.options.size() > 0) {
-            createPollDto.options.forEach(option -> {
-                final var poll_option = new PollOptionsModel();
-                poll_option.pollId = poll.id;
-                poll_option.option = option;
-                pollOptionsRepository.save(poll_option);
-            });
-        }
+
+        createPollDto.options.forEach(option -> {
+            final var poll_option = new PollOptionsModel();
+            poll_option.pollId = poll.id;
+            poll_option.option = option;
+            pollOptionsRepository.save(poll_option);
+        });
     }
 
-    public void editPoll(long pollId, CreatePollDto createPollDto) {
+    public void editPoll(long pollId, PollDto pollDto) {
         var poll = pollRepository.findById(pollId);
-        PollModel pollModel = new PollModel();
         if (poll.isPresent()) {
-            pollModel = poll.get();
-            pollModel.title = createPollDto.title;
-            pollModel.multipleAnswers = createPollDto.multipleAnswers;
-            pollModel.duplicationCheck = createPollDto.duplicationCheck;
-            pollModel.options = createPollDto.options;
+            PollModel pollModel = poll.get();
+            pollModel.title = pollDto.title;
+            pollModel.multipleAnswers = pollDto.multipleAnswers;
+            pollModel.duplicationCheck = pollDto.duplicationCheck;
+
+            pollRepository.save(pollModel);
+
+            pollDto.options.forEach(optionDto -> {
+                var option = pollOptionsRepository.findById(optionDto.id);
+                if (option.isPresent()) {
+                    PollOptionsModel pollOptionsModel = option.get();
+                    pollOptionsModel.option = optionDto.option;
+                    pollOptionsRepository.save(pollOptionsModel);
+                }
+            });
         } else {
             System.out.println("Poll not found!");
         }
-        pollRepository.save(pollModel);
     }
 
     public PollDto viewPoll(long pollId) {
@@ -88,7 +99,7 @@ public class PollRoute {
             pollDto.duplicationCheck = pollModel.duplicationCheck;
             pollDto.multipleAnswers = pollModel.multipleAnswers;
             pollDto.options = pollOptionsRepository.findAllByPollId(pollId)
-                    .stream().map(pollOptionsModel -> pollOptionsModel.option)
+                    .stream().map(PollOptionDto::new)
                     .collect(Collectors.toList());
         } else {
             System.out.println("Poll not found!");

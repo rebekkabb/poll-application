@@ -7,5 +7,5 @@ public class PollDto {
     public String title;
     public Boolean multipleAnswers;
     public Boolean duplicationCheck;
-    public List<String> options;
+    public List<PollOptionDto> options;
 }

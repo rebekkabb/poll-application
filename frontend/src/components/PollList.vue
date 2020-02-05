@@ -21,7 +21,7 @@
                 <b-button @click="this.getPolls" variant="outline-dark">Get data</b-button>
             </b-list-group>
         </b-card>
-        <b-button @click="viewPoll(11)" variant="outline-dark">View poll</b-button>
+        <b-button @click="viewPoll(61)" variant="outline-dark">View poll</b-button>
         <edit-poll></edit-poll>
         {{polly}}
     </div>

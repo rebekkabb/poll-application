@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -32,7 +33,7 @@ public class PollRoute {
             pollDto.title = pollModel.title;
             pollDto.duplicationCheck = pollModel.duplicationCheck;
             pollDto.multipleAnswers = pollModel.multipleAnswers;
-            pollDto.options = pollModel.options;
+            pollDto.options = pollOptionsRepository.findAllOptionValuesWithPollId(pollModel.id);
             pollDtos.add(pollDto);
         });
         return pollDtos;
@@ -51,10 +52,10 @@ public class PollRoute {
 
         System.out.println(poll.id);
 
-        if(createPollDto.options.size() > 0){
+        if (createPollDto.options.size() > 0) {
             createPollDto.options.forEach(option -> {
                 final var poll_option = new PollOptionsModel();
-                poll_option.poll_id = poll.id;
+                poll_option.pollId = poll.id;
                 poll_option.option = option;
                 pollOptionsRepository.save(poll_option);
             });
@@ -64,13 +65,13 @@ public class PollRoute {
     public void editPoll(long pollId, CreatePollDto createPollDto) {
         var poll = pollRepository.findById(pollId);
         PollModel pollModel = new PollModel();
-        if(poll.isPresent()){
+        if (poll.isPresent()) {
             pollModel = poll.get();
             pollModel.title = createPollDto.title;
             pollModel.multipleAnswers = createPollDto.multipleAnswers;
             pollModel.duplicationCheck = createPollDto.duplicationCheck;
             pollModel.options = createPollDto.options;
-        }else {
+        } else {
             System.out.println("Poll not found!");
         }
         pollRepository.save(pollModel);
@@ -79,14 +80,17 @@ public class PollRoute {
     public PollDto viewPoll(long pollId) {
         var poll = pollRepository.findById(pollId);
         final var pollDto = new PollDto();
-        if(poll.isPresent()){
+
+        if (poll.isPresent()) {
             PollModel pollModel = poll.get();
             pollDto.id = pollModel.id;
             pollDto.title = pollModel.title;
             pollDto.duplicationCheck = pollModel.duplicationCheck;
             pollDto.multipleAnswers = pollModel.multipleAnswers;
-            pollDto.options = pollModel.options;
-        }else {
+            pollDto.options = pollOptionsRepository.findAllByPollId(pollId)
+                    .stream().map(pollOptionsModel -> pollOptionsModel.option)
+                    .collect(Collectors.toList());
+        } else {
             System.out.println("Poll not found!");
         }
         return pollDto;

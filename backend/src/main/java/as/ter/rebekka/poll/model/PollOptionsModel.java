@@ -14,7 +14,7 @@ public class PollOptionsModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
 
-    public long poll_id;
+    public long pollId;
 
     public String option;
     public long votes;

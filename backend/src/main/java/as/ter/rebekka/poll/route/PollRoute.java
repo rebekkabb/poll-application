@@ -105,9 +105,11 @@ public class PollRoute {
             System.out.println("Poll not found!");
         }
         return pollDto;
+
     }
 
     public void deletePoll(long pollId) {
+        pollOptionsRepository.deleteAllOptionsWithPollId(pollId);
         pollRepository.deleteById(pollId);
     }
 }

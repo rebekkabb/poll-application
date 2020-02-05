@@ -14,6 +14,7 @@
                         Duplication check: {{poll.duplicationCheck}}
                         <br><br>
                         <b-button @click="deletePoll(poll.id)" variant="outline-danger" size="sm">Delete poll</b-button>
+                        <b-button variant="outline-dark" size="sm" v-b-modal.modal-edit>Edit poll</b-button>
                     </b-list-group-item>
                 </div>
                 <br>
@@ -21,6 +22,7 @@
             </b-list-group>
         </b-card>
         <b-button @click="viewPoll(11)" variant="outline-dark">View poll</b-button>
+        <edit-poll></edit-poll>
         {{polly}}
     </div>
 </template>
@@ -30,16 +32,20 @@
         import axios from "axios";
         import PollDto from "../dto/PollDto";
         import Poll from "./Poll.vue";
+        import EditPoll from "./EditPoll.vue";
+
 
         @Component({
             components: {
-                Poll
+                Poll,
+                EditPoll
             },
         })
 
         export default class PollList extends Vue {
             polls: PollDto[] = [];
             polly: PollDto[] = [];
+
 
             constructor() {
                 super();
@@ -67,5 +73,6 @@
                     this.polly = res.data;
                 })
             }
+
         };
     </script>

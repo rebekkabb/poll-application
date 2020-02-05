@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import java.time.LocalTime;
 import java.util.List;
 
 @Data

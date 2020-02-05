@@ -65,6 +65,7 @@
                 this.poll = new CreatePollDto();
             })
         }
+
     };
 </script>
 

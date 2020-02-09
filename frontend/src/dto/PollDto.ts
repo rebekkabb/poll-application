@@ -1,9 +1,13 @@
 import PollOptionDto from "./PollOptionDto";
 
-export default interface PollDto {
-    id: number;
-    title: String;
-    multipleAnswers: boolean;
-    duplicationCheck: boolean;
-    options: PollOptionDto[];
+export default class PollDto {
+    id?: number;
+    title: String = "";
+    multipleAnswers: boolean = false;
+    duplicationCheck: boolean = false;
+    options: PollOptionDto[] = [];
+
+    constructor() {
+
+    }
 }

@@ -1,4 +1,8 @@
-export default interface PollDto {
-    id: number;
-    option: string;
+export default class PollOptionDto {
+    id: number = 0;
+    option: string = "";
+
+    constructor() {
+
+    }
 }

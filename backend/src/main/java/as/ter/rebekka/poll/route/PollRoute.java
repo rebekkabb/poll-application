@@ -75,9 +75,19 @@ public class PollRoute {
 
             pollRepository.save(pollModel);
 
+            /*
+            TODO: get all of the options from the database
+            iterate over them and
+            convert the PollDto option into a Map where the key is the id and the value is the Dto object
+            if a option with the same id exists in the map, change the option's option value, remove that value from the map
+            if a option with the same id does not exist in the map, remove the database poll option with the id (of the option) that is being iterated over
+            for every value that is still in the map, create a new poll option and save it to the database
+             */
+
             pollDto.options.forEach(optionDto -> {
                 var option = pollOptionsRepository.findById(optionDto.id);
                 if (option.isPresent()) {
+
                     PollOptionsModel pollOptionsModel = option.get();
                     pollOptionsModel.option = optionDto.option;
                     pollOptionsRepository.save(pollOptionsModel);
@@ -105,7 +115,6 @@ public class PollRoute {
             System.out.println("Poll not found!");
         }
         return pollDto;
-
     }
 
     public void deletePoll(long pollId) {
